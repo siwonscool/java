@@ -6,6 +6,7 @@ public class Card {
 	String Kind;
 
 	Card() {
+		this(0, 0);
 	}
 
 	Card(int kind, int number) {
