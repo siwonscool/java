@@ -29,4 +29,10 @@ public class Deck {
 			card[random] = temp;
 		}
 	}
+	
+	public void displayDeck() {
+		for (int i = 0; i < Deck.Max_Number; i++) {
+			this.pick(i);
+		}
+	}
 }
