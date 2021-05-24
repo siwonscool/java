@@ -17,7 +17,7 @@ public class Deck {
 	}
 
 	public void pick() {
-		int random = (int) (Math.random() * 100) % Max_Number;
+		int random = (int)(Math.random() * Max_Number);
 		this.pick(random);
 	}
 
