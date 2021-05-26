@@ -1,0 +1,7 @@
+package p03;
+
+public class Washer extends Product {
+	Washer() {
+		super("트럼",180);
+	}
+}
