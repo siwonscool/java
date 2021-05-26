@@ -14,7 +14,12 @@ public class Card {
 		this.number = Card_Number[number];
 	}
 	
-	public void getCard() {
-		System.out.println(this.Kind + " " + this.number);
+	public String getCard() {
+		return this.Kind + " " + this.number;
 	}
+	
+	public String toString() {
+		return this.getCard();
+	}
+	
 }

@@ -60,8 +60,6 @@ public class Ex0521_02 {
 					st[i].findName(find); 
 				}
 				
-				
-
 				break;
 			case "4":
 
