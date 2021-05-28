@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Student {
 	static Scanner in = new Scanner(System.in);
-	static int count;
+	static int count=-1;
 	int studentNum = ++count;
 	private String name;
 	private int kor;
@@ -14,7 +14,7 @@ public class Student {
 	private double avg;
 	private int rank = 1;
 
-	public void setStudent(ArrayList list) {
+	public void setStudent(ArrayList<Student> list) {
 		while (true) {
 			System.out.println("학생의 이름을 입력하세요 [0].뒤로가기");
 			String input = in.next();
@@ -22,8 +22,8 @@ public class Student {
 				break;
 			}
 			list.add(new Student());
-			System.out.println("count : "+count);
-			Student s = (Student) list.get(count-2);
+			
+			Student s = (Student) list.get(count - 1);
 			s.name = input;
 			System.out.println("국어 점수를 입력하세요");
 			s.kor = in.nextInt();
@@ -31,8 +31,8 @@ public class Student {
 			s.eng = in.nextInt();
 			System.out.println("수학 점수를 입력하세요");
 			s.math = in.nextInt();
-			s.total = kor + eng + math;
-			s.avg = total / 3.0;
+			s.total = s.kor + s.eng + s.math;
+			s.avg = s.total / 3.0;
 		}
 
 	}// setStudent()
@@ -42,12 +42,11 @@ public class Student {
 				kor, eng, math, total, avg, rank);
 	}// getScore()
 
-	public void displayScore(ArrayList list) {
+	public void displayScore(ArrayList<Student> list) {
 		System.out.println("번호\t 이름\t 국어\t 영어\t 수학\t 총점\t 평균\t 등수\t");
 		System.out.println("__________________________________________________________");
 		for (int i = 0; i < list.size(); i++) {
-			Student s = (Student)list.get(i);
-			s.getScore();
+			list.get(i).getScore();
 		}
 		System.out.println("___________________________________________________________");
 	}
@@ -59,7 +58,6 @@ public class Student {
 
 		switch (choice) {
 		case 1:
-
 			System.out.println("현재 국어성적 : " + this.kor);
 			this.total -= this.kor;
 			System.out.println("수정할 점수를 입력하세요 : ");
@@ -69,7 +67,6 @@ public class Student {
 			break;
 
 		case 2:
-
 			System.out.println("현재 영어성적 : " + this.eng);
 			this.total -= this.eng;
 			System.out.println("수정할 점수를 입력하세요 : ");
@@ -79,7 +76,6 @@ public class Student {
 			break;
 
 		case 3:
-
 			System.out.println("현재 수학성적 : " + this.math);
 			this.total -= this.math;
 			System.out.println("수정할 점수를 입력하세요 : ");
@@ -94,87 +90,84 @@ public class Student {
 
 	}// setScore()
 
-	public void doRank(ArrayList list) {
+	public void doRank(ArrayList<Student> list) {
 		for (int i = 0; i < list.size(); i++) {
-			Student s = (Student) list.get(i);
-			s.rank = 1;
+			list.get(i).rank=1;
 			for (int j = 0; j < list.size(); j++) {
-				Student s2 = (Student) list.get(j);
-				if (s.total < s2.total) {
-					s.rank++;
+				if (list.get(i).total < list.get(j).total) {
+					list.get(i).rank++;
 				} // if
 			} // for : j
 		} // for : i
 
 	}// doRank()
 
-	public void findStudent(ArrayList list, ArrayList<Integer> index) {
+	public void findStudent(ArrayList<Student> list, ArrayList<Integer> index) {
 		System.out.println("찾으려하는 학생의 이름을 입력하세요 : ");
 		String input = in.next();
 
 		for (int i = 0; i < list.size(); i++) {
-			Student s = (Student)list.get(i);
-			if (s.name.contains(input)) {
+			if (list.get(i).name.contains(input)) {
 				index.add(i);
 			}
 		}
 
-	}// findStudent
+	}// findStudent()
 
-	public void selectStudentInfo(ArrayList list, ArrayList<Integer> index) {
+	public void selectStudentInfo(ArrayList<Student> list, ArrayList<Integer> index) {
 		switch (index.size()) {
 		case 0:
 			System.out.println("일치하는 학생이 없습니다.");
+
 			break;
+
 		default:
 			System.out.println("번호\t 이름\t 국어\t 영어\t 수학\t 총점\t 평균\t 등수\t");
 			System.out.println("__________________________________________________________");
 			for (int i = 0; i < index.size(); i++) {
-				Student s = (Student)list.get(i);
-				s.getScore();
+				list.get(i).getScore();
 			}
 			System.out.println("___________________________________________________________");
+
 			break;
 		}
-	}// selectStudentInfo
+	}// selectStudentInfo()
 
-	public void changeStudentInfo(ArrayList list, ArrayList<Integer> index) {
-		
+	public void changeStudentInfo(ArrayList<Student> list, ArrayList<Integer> index) {
+
 		switch (index.size()) {
 		case 0:
 			System.out.println("일치하는 학생이 없습니다.");
-			break;
-		case 1:
 
+			break;
+
+		case 1:
 			System.out.println("번호\t 이름\t 국어\t 영어\t 수학\t 총점\t 평균\t 등수\t");
 			System.out.println("__________________________________________________________");
-			Student s = (Student)list.get(index.get(0));
-			s.getScore();
+			list.get(index.get(0)).getScore();
 			System.out.println("___________________________________________________________");
-			s.setScore();
+			list.get(index.get(0)).setScore();
 
 			break;
-		default:
 
+		default:
 			System.out.println("번호\t 이름\t 국어\t 영어\t 수학\t 총점\t 평균\t 등수\t");
 			System.out.println("__________________________________________________________");
 			for (int i = 0; i < index.size(); i++) {
-				Student s2 = (Student)list.get(index.get(i));
-				s2.getScore();
+				list.get(index.get(i)).getScore();
 			}
 			System.out.println("___________________________________________________________");
-
 			System.out.println("수정하고싶은 학생의 번호를 입력하세요");
 			int choice = in.nextInt();
 
 			for (int i = 0; i < index.size(); i++) {
-				Student s3 = (Student)list.get(index.get(i));
-				if (s3.studentNum == choice) {
-					s3.setScore();
+				if (list.get(index.get(i)).studentNum == choice) {
+					list.get(index.get(i)).setScore();
 				}
 			}
 
 			break;
+
 		}// switch
 
 	}// changeStudentInfo()
