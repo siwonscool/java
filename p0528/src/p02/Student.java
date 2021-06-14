@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Student {
 	static Scanner in = new Scanner(System.in);
-	static int count=-1;
+	static int count = -1;
 	int studentNum = ++count;
 	private String name;
 	private int kor;

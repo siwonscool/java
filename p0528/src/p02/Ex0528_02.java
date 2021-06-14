@@ -36,12 +36,11 @@ public class Ex0528_02 {
 				break;
 			case "0":
 				
-				break;
+				break loop1;
 
 			default:
-				break loop1;
+				System.out.println("잘못 입력하셨습니다.");
 			}
 		}
 	}
-
 }
