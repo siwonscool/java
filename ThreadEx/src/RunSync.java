@@ -17,7 +17,7 @@ public class RunSync {
         try {
             thread1.join();
             thread2.join();
-            System.out.println("Final value = " + cal.getAmount());
+            System.out.println("Final value == " + cal.getAmount());
         }catch (Exception e){
             e.printStackTrace();
         }
